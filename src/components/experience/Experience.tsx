@@ -1,12 +1,12 @@
 import { OrbitControls } from "@react-three/drei"
+import Level from "../level/Level"
+import Lights from "../lights/Lights"
 
 const Experience = () => {
   return (
     <>
-      <mesh>
-        <boxGeometry />
-        <meshNormalMaterial />
-      </mesh>
+      <Level />
+      <Lights />
 
       <OrbitControls makeDefault/>
     </>
