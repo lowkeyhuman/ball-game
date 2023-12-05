@@ -189,10 +189,11 @@ function Bounds({length = 1}: BoundsProps) {
 
 interface Props {
   count?: number,
-  types?: (({ position }: BlockProps) => JSX.Element)[]
+  types?: (({ position }: BlockProps) => JSX.Element)[],
+  seed?: number
 }
 
-const Level = ({count = 5, types = [BlockSpinner, BlockAxe, BlockLimbo]}: Props) => {
+const Level = ({count = 5, types = [BlockSpinner, BlockAxe, BlockLimbo], seed = 0}: Props) => {
   const blocks = useMemo(() => {
     const blocks: (({ position }: BlockProps) => JSX.Element)[] = []
 
@@ -202,7 +203,7 @@ const Level = ({count = 5, types = [BlockSpinner, BlockAxe, BlockLimbo]}: Props)
     }
 
     return blocks
-  }, [count, types])
+  }, [count, types, seed])
 
   return (
     <>

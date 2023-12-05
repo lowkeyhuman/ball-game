@@ -3,6 +3,7 @@ import { subscribeWithSelector } from 'zustand/middleware'
 
 interface GameStore {
   blocksCount: number,
+  blocksSeed: number
   startTime: number,
   endTime: number,
   phase: 'ready' | 'playing' | 'ended',
@@ -13,7 +14,8 @@ interface GameStore {
 
 export default create(subscribeWithSelector<GameStore>((set) => {
   const gameStore: GameStore = {
-    blocksCount: 3,
+    blocksCount: 10,
+    blocksSeed: 0,
     startTime: 0,
     endTime: 0,
     phase: 'ready',
@@ -28,7 +30,7 @@ export default create(subscribeWithSelector<GameStore>((set) => {
     restart: () => {
       set((state) => {
         if (state.phase == 'playing' || state.phase == 'ended')
-          return {phase: 'ready'}
+          return {phase: 'ready', blocksSeed: Math.random()}
 
         return {}
       })
