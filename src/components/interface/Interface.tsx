@@ -2,6 +2,8 @@ import { useKeyboardControls } from '@react-three/drei'
 import './Interface.css'
 import classNames from 'classnames'
 import useGame from '../../stores/useGame'
+import { useEffect, useRef } from 'react'
+import { addEffect } from '@react-three/fiber'
 
 const Interface = () => {
   const forward = useKeyboardControls(state => state.forward)
@@ -13,10 +15,37 @@ const Interface = () => {
   const restart = useGame(state => state.restart)
   const phase = useGame(state => state.phase)
 
+  const timeRef = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    const time = timeRef.current
+    if (time == null) return
+
+    const unsubscribeEffect = addEffect(() => {
+      const state = useGame.getState()
+      
+      let elapsedTime = 0
+      if (state.phase == 'playing') {
+        elapsedTime = Date.now() - state.startTime
+      }
+
+      if (state.phase == 'ended') {
+        elapsedTime = state.endTime - state.startTime
+      }
+
+      elapsedTime /= 1000
+
+      time.textContent = elapsedTime.toFixed(2)
+    })
+
+    return () => {
+      unsubscribeEffect()
+    }
+  }, [])
+
   return (
     <div className='interface'>
 
-      <div className="time">0.00</div>
+      <div ref={timeRef} className="time">0.00</div>
 
       {phase == 'ended' && <div className="restart" onClick={restart}>Restart</div>}
 
