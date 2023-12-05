@@ -2,7 +2,9 @@
 
 A simple game made with React Three Fiber, following Bruno Simon's https://threejs-journey.com course, but in TypeScript.
 
-https://lowkeyhuman.github.io/ball-game
+Play the game: https://lowkeyhuman.github.io/ball-game
+
+![Ball Game Demo](ball-game-demo.gif)
 
 ## To run it locally
 Clone the repo, `cd` into the directory and install npm packages:
