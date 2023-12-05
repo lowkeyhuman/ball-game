@@ -1,7 +1,23 @@
+import { useFrame } from "@react-three/fiber"
+import { useRef } from "react"
+import { DirectionalLight } from "three"
+
 const Lights = () => {
+  const lightRef = useRef<DirectionalLight>(null)
+
+  useFrame((state) => {
+    const light = lightRef.current
+    if (light == null) return
+
+    light.position.z = state.camera.position.z + 1
+    light.target.position.z = state.camera.position.z
+    light.target.updateMatrixWorld()
+  })
+
   return (
     <>
       <directionalLight
+        ref={lightRef}
         castShadow
         position={ [ 4, 4, 1 ] }
         intensity={ 4.5 }
