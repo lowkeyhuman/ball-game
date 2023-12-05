@@ -17,11 +17,13 @@
     "@react-three/drei": "^9.89.3",
     "@react-three/fiber": "^8.15.12",
     "@react-three/rapier": "^1.1.2",
+    "classnames": "^2.3.2",
     "gh-pages": "^6.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "three": "^0.159.0",
-    "vite-plugin-pwa": "^0.17.2"
+    "vite-plugin-pwa": "^0.17.2",
+    "zustand": "^4.4.7"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

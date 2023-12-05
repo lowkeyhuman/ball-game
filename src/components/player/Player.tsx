@@ -3,6 +3,7 @@ import { useFrame } from "@react-three/fiber"
 import { RapierRigidBody, RigidBody, useRapier } from "@react-three/rapier"
 import { useEffect, useRef, useState } from "react"
 import * as THREE from 'three'
+import useGame from "../../stores/useGame"
 
 const Player = () => {
   const marbleRef = useRef<RapierRigidBody>(null)
@@ -11,6 +12,11 @@ const Player = () => {
 
   const [smoothedCameraPosition] = useState(() => new THREE.Vector3(0, 10, 10))
   const [smoothedCameraTarget] = useState(() => new THREE.Vector3())
+
+  const start = useGame(state => state.start)
+  const end = useGame(state => state.end)
+  const restart = useGame(state => state.restart)
+  const blocksCount = useGame(state => state.blocksCount)
 
   const jump = () => {
     const marble = marbleRef.current
@@ -29,7 +35,26 @@ const Player = () => {
     }
   }
 
+  const reset = () => {
+    console.log('reset')
+    const marble = marbleRef.current
+    if (marble == null) return
+
+    marble.setTranslation({x: 0, y: 1, z: 0}, true)
+    marble.setLinvel({x: 0, y: 0, z: 0}, true)
+    marble.setAngvel({x: 0, y: 0, z: 0}, true)
+  }
+
   useEffect(() => {
+    const unsubscribeReset = useGame.subscribe(
+      (state) => state.phase,
+      (value) => {
+        if (value == 'ready') {
+          reset()
+        }
+      }
+    )
+
     const unsubscribeJump = subscribeKeys(
       (state) => state.jump, 
       (value) => {
@@ -39,8 +64,14 @@ const Player = () => {
       }
     )
 
+    const unsubscribeAny = subscribeKeys(() => {
+      start()
+    })
+
     return () => {
+      unsubscribeReset()
       unsubscribeJump()
+      unsubscribeAny()
     }
   }, [])
 
@@ -93,6 +124,14 @@ const Player = () => {
 
     state.camera.position.copy(smoothedCameraPosition)
     state.camera.lookAt(smoothedCameraTarget)
+
+    if (bodyPosition.z < - (blocksCount * 4 + 2)) {
+      end()
+    }
+
+    if (bodyPosition.y < -4) {
+      restart()
+    }
   })
 
   return (

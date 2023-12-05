@@ -6,3 +6,11 @@ html, body, #root {
   height: 100%;
   overflow: hidden;
 }
+
+::selection {
+  background: none;
+}
+
+a {
+  text-decoration: none;
+}
