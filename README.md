@@ -1,6 +1,6 @@
 # Ball Game
 
-A simple game made with React Three Fiber, following Bruno Simon's https://threejs-journey.com course.
+A simple game made with React Three Fiber, following Bruno Simon's https://threejs-journey.com course, but in TypeScript.
 
 https://lowkeyhuman.github.io/ball-game
 

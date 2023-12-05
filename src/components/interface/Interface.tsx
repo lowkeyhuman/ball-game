@@ -1,6 +1,7 @@
 import { useKeyboardControls } from '@react-three/drei'
 import './Interface.css'
 import classNames from 'classnames'
+import useGame from '../../stores/useGame'
 
 const Interface = () => {
   const forward = useKeyboardControls(state => state.forward)
@@ -9,12 +10,15 @@ const Interface = () => {
   const rightward = useKeyboardControls(state => state.rightward)
   const jump = useKeyboardControls(state => state.jump)
 
+  const restart = useGame(state => state.restart)
+  const phase = useGame(state => state.phase)
+
   return (
     <div className='interface'>
 
       <div className="time">0.00</div>
 
-      <div className="restart">Restart</div>
+      {phase == 'ended' && <div className="restart" onClick={restart}>Restart</div>}
 
       <div className="controls">
         <div className="raw">
