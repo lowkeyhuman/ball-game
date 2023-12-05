@@ -7,7 +7,7 @@ import Player from "../player/Player"
 const Experience = () => {
   return (
     <>
-      <Physics debug>
+      <Physics>
         <Level />
         <Lights />
         <Player /> 
