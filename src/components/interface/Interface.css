@@ -62,3 +62,21 @@
 .controls .key.active {
   background: #ffffff99;
 }
+
+.source-code {
+  background-color: rgba(0,0,0,0.3);
+  display: inline-block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  font-size: 28px;
+  padding: 5px 15px 0px 15px;
+  color: white;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: 0.2s ease all;
+}
+
+.source-code:hover {
+  background-color: rgba(0,0,0,0.6);
+}

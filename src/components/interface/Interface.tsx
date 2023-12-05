@@ -63,6 +63,10 @@ const Interface = () => {
         </div>
       </div>
 
+      <a className="source-code" href='https://github.com/lowkeyhuman/ball-game' target='_blank' >
+        SOURCE CODE
+      </a>
+
     </div>
   )
 }
