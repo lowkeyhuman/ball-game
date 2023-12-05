@@ -2,6 +2,7 @@ import { Canvas } from '@react-three/fiber'
 import './App.css'
 import Experience from './components/experience/Experience'
 import { KeyboardControls } from '@react-three/drei'
+import Interface from './components/interface/Interface'
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           >
           <Experience />        
         </Canvas>
+        <Interface />
       </KeyboardControls>
     </>
   )
