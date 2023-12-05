@@ -1,4 +1,4 @@
-import { useGLTF } from "@react-three/drei"
+import { Float, Text, useGLTF } from "@react-three/drei"
 import { ObjectMap, useFrame } from "@react-three/fiber"
 import { CuboidCollider, RapierRigidBody, RigidBody } from "@react-three/rapier"
 import { useMemo, useRef, useState } from "react"
@@ -19,6 +19,21 @@ interface BlockProps {
 function BlockStart({position = [0, 0, 0]}: BlockProps) {
   return (
     <group position={position}>
+      <Float>
+        <Text 
+        font="./bebas-neue-v9-latin-regular.woff"
+          scale={0.5}
+          maxWidth={0.25}
+          lineHeight={0.75}
+          textAlign="right"
+          position={[0.75, 0.65, 0]}
+          rotation-y={-0.25}
+        >
+          Ball Game
+          <meshBasicMaterial toneMapped={false} />
+        </Text>
+      </Float>
+
       <mesh 
         geometry={boxGeometry} material={floor1Material}
         position={[0, -0.1, 0]} scale={[4, 0.2, 4]} 
@@ -42,6 +57,15 @@ function BlockEnd({position = [0, 0, 0]}: BlockProps) {
 
   return (
     <group position={position}>
+      <Text 
+      font="./bebas-neue-v9-latin-regular.woff"
+        scale={1}
+        position={[0, 2.25, 2]}
+      >
+        FINISH
+        <meshBasicMaterial toneMapped={false} />
+      </Text>
+
       <mesh 
         geometry={boxGeometry} material={floor1Material}
         position={[0, 0, 0]} scale={[4, 0.2, 4]} 

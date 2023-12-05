@@ -10,6 +10,8 @@ const Experience = () => {
 
   return (
     <>
+      <color args={['#bdedfc']} attach={'background'} />
+
       <Physics>
         <Level count={blocksCount} seed={blocksSeed} />
         <Lights />
