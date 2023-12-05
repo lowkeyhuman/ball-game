@@ -1,4 +1,3 @@
-import { OrbitControls } from "@react-three/drei"
 import Level from "../level/Level"
 import Lights from "../lights/Lights"
 import { Physics } from "@react-three/rapier"
@@ -12,8 +11,6 @@ const Experience = () => {
         <Lights />
         <Player /> 
       </Physics>
-
-      <OrbitControls makeDefault/>
     </>
   )
 }
